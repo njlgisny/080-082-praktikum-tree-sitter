@@ -11,17 +11,18 @@ module.exports = grammar({
   rules: {
     query: $ => $._expr,
 
-    _expr: $ => choice(
+   _expr: $ => choice(
       $.comparison,
       $.and_expression,
       $.or_expression,
-      $.parenthesized_expression
+      $.parenthesized_expression,
+      $.not_expression
     ),
 
     comparison: $ => seq(
       $.identifier,
       choice('=', '!=', '>', '<', '>=', '<='),
-      choice($.string, $.number)
+      choice($.string, $.number, $.boolean)
     ),
 
     and_expression: $ => prec.left(seq($._expr, 'and', $._expr)),
@@ -29,6 +30,10 @@ module.exports = grammar({
     or_expression: $ => prec.left(seq($._expr, 'or', $._expr)),
 
     parenthesized_expression: $ => seq('(', $._expr, ')'),
+
+    not_expression: $ => prec(3, seq('not', $._expr)),
+
+    boolean: $ => choice('true', 'false'),
 
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_.]*/,
     word: $ => $.identifier,
