@@ -20,9 +20,9 @@ module.exports = grammar({
     ),
 
     comparison: $ => seq(
-      $.identifier,
-      choice('=', '!=', '>', '<', '>=', '<='),
-      choice($.string, $.number, $.boolean)
+      field('left', $.identifier),
+      field('operator', choice('=', '!=', '>', '<', '>=', '<=')),
+      field('right', choice($.string, $.number, $.boolean))
     ),
 
     and_expression: $ => prec.left(seq($._expr, 'and', $._expr)),
