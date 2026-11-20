@@ -9,15 +9,20 @@ module.exports = grammar({
   name: 'filter',
   extras: $ => [/\s/],
   rules: {
-    query: $ => $.comparison,
-    
+    query: $ => $._expr,
+
+    _expr: $ => $.comparison,
+
     comparison: $ => seq(
       $.identifier,
       choice('=', '!=', '>', '<', '>=', '<='),
       choice($.string, $.number)
     ),
 
+    and_expression: $ => seq($._expr, 'and', $._expr),
+
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_.]*/,
+    word: $ => $.identifier,
     string: $ => /"[^"]*"/,
     number: $ => /[0-9]+/,
   }

@@ -9,7 +9,7 @@
 #define LANGUAGE_VERSION 15
 #define STATE_COUNT 7
 #define LARGE_STATE_COUNT 2
-#define SYMBOL_COUNT 12
+#define SYMBOL_COUNT 13
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 10
 #define EXTERNAL_TOKEN_COUNT 0
@@ -30,7 +30,8 @@ enum ts_symbol_identifiers {
   sym_string = 8,
   sym_number = 9,
   sym_query = 10,
-  sym_comparison = 11,
+  sym__expr = 11,
+  sym_comparison = 12,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -45,6 +46,7 @@ static const char * const ts_symbol_names[] = {
   [sym_string] = "string",
   [sym_number] = "number",
   [sym_query] = "query",
+  [sym__expr] = "_expr",
   [sym_comparison] = "comparison",
 };
 
@@ -60,6 +62,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_string] = sym_string,
   [sym_number] = sym_number,
   [sym_query] = sym_query,
+  [sym__expr] = sym__expr,
   [sym_comparison] = sym_comparison,
 };
 
@@ -106,6 +109,10 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
   },
   [sym_query] = {
     .visible = true,
+    .named = true,
+  },
+  [sym__expr] = {
+    .visible = false,
     .named = true,
   },
   [sym_comparison] = {
@@ -225,6 +232,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   },
   [STATE(1)] = {
     [sym_query] = STATE(4),
+    [sym__expr] = STATE(5),
     [sym_comparison] = STATE(5),
     [sym_identifier] = ACTIONS(3),
   },

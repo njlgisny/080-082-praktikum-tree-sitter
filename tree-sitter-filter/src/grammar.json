@@ -4,6 +4,10 @@
   "rules": {
     "query": {
       "type": "SYMBOL",
+      "name": "_expr"
+    },
+    "_expr": {
+      "type": "SYMBOL",
       "name": "comparison"
     },
     "comparison": {
@@ -57,9 +61,30 @@
         }
       ]
     },
+    "and_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_expr"
+        },
+        {
+          "type": "STRING",
+          "value": "and"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expr"
+        }
+      ]
+    },
     "identifier": {
       "type": "PATTERN",
       "value": "[a-zA-Z_][a-zA-Z0-9_.]*"
+    },
+    "word": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "string": {
       "type": "PATTERN",
