@@ -1,0 +1,44 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "filter",
+      "camelcase": "Filter",
+      "title": "Filter",
+      "scope": "source.filter",
+      "file-types": [
+        "filter"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "^filter$",
+      "class-name": "TreeSitterFilter"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "A filter language for admin queries",
+    "authors": [
+      {
+        "name": "Najla Gianneta Agisny, Nida Atqiya",
+        "url": ""
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/njlgisny/080-082-praktikum-tree-sitter",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": false,
+    "go": false,
+    "java": false,
+    "node": false,
+    "python": true,
+    "rust": false,
+    "swift": false,
+    "zig": false
+  }
+}

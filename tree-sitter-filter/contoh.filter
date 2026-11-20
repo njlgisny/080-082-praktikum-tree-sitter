@@ -1,0 +1,1 @@
+status = "open" and priority >= 2 or is_active = true and name contains "admin" and role in ("admin", "user") and not deleted != false

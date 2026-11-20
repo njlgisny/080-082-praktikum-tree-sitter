@@ -1,0 +1,128 @@
+==================
+Perbandingan string
+==================
+
+status = "open"
+
+---
+
+(query
+  (comparison
+    left: (identifier)
+    right: (string)))
+
+==================
+Perbandingan angka
+==================
+
+priority >= 2
+
+---
+
+(query
+  (comparison
+    left: (identifier)
+    right: (number)))
+
+==================
+Ekspresi and
+==================
+
+a = 1 and b = 2
+
+---
+
+(query
+  (and_expression
+    (comparison
+      left: (identifier)
+      right: (number))
+    (comparison
+      left: (identifier)
+      right: (number))))
+
+==================
+Prioritas and dan or
+==================
+
+a = 1 or b = 2 and c = 3
+
+---
+
+(query
+  (or_expression
+    (comparison
+      left: (identifier)
+      right: (number))
+    (and_expression
+      (comparison
+        left: (identifier)
+        right: (number))
+      (comparison
+        left: (identifier)
+        right: (number)))))
+
+==================
+Ekspresi dengan kurung
+==================
+
+(a = 1 or b = 2) and c = 3
+
+---
+
+(query
+  (and_expression
+    (parenthesized_expression
+      (or_expression
+        (comparison
+          left: (identifier)
+          right: (number))
+        (comparison
+          left: (identifier)
+          right: (number))))
+    (comparison
+      left: (identifier)
+      right: (number))))
+
+==================
+Ekspresi not dan boolean
+==================
+
+not archived = true
+
+---
+
+(query
+  (not_expression
+    (comparison
+      left: (identifier)
+      right: (boolean))))
+
+==================
+Operator in
+==================
+
+status in ("open", "pending", "closed")
+
+---
+
+(query
+  (comparison
+    left: (identifier)
+    right: (in_expression
+      (string)
+      (string)
+      (string))))
+
+==================
+Operator contains
+==================
+
+name contains "Najla"
+
+---
+
+(query
+  (comparison
+    left: (identifier)
+    right: (string)))
