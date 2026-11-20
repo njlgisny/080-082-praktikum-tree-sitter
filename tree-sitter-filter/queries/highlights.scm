@@ -1,0 +1,15 @@
+(string) @string
+"and" @keyword
+"or" @keyword
+"not" @keyword
+"in" @keyword
+"contains" @keyword
+"=" @operator
+"!=" @operator
+">" @operator
+"<" @operator
+">=" @operator
+"<=" @operator
+(number) @number
+(boolean) @boolean
+(identifier) @variable
