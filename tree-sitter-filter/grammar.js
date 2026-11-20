@@ -21,13 +21,13 @@ module.exports = grammar({
 
     comparison: $ => seq(
       field('left', $.identifier),
-      field('operator', choice('=', '!=', '>', '<', '>=', '<=')),
-      field('right', choice($.string, $.number, $.boolean))
+      field('operator', choice('=', '!=', '>', '<', '>=', '<=', 'in', 'contains')),
+      field('right', choice($.string, $.number, $.boolean, $.in_expression))
     ),
 
-    and_expression: $ => prec.left(seq($._expr, 'and', $._expr)),
+    and_expression: $ => prec.left(2, seq($._expr, 'and', $._expr)),
 
-    or_expression: $ => prec.left(seq($._expr, 'or', $._expr)),
+    or_expression: $ => prec.left(1, seq($._expr, 'or', $._expr)),
 
     parenthesized_expression: $ => seq('(', $._expr, ')'),
 
