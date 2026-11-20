@@ -25,6 +25,19 @@ module.exports = grammar({
       field('right', choice($.string, $.number, $.boolean, $.in_expression))
     ),
 
+    in_expression: $ => seq(
+      '(',
+      $._value,
+      repeat(seq(',', $._value)),
+      ')'
+    ),
+
+    _value: $ => choice(
+      $.string,
+      $.number,
+      $.boolean
+    ),
+
     and_expression: $ => prec.left(2, seq($._expr, 'and', $._expr)),
 
     or_expression: $ => prec.left(1, seq($._expr, 'or', $._expr)),

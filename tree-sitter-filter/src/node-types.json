@@ -76,6 +76,14 @@
           {
             "type": ">=",
             "named": false
+          },
+          {
+            "type": "contains",
+            "named": false
+          },
+          {
+            "type": "in",
+            "named": false
           }
         ]
       },
@@ -88,6 +96,10 @@
             "named": true
           },
           {
+            "type": "in_expression",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -97,6 +109,29 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "in_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -237,6 +272,10 @@
     "named": false
   },
   {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": "<",
     "named": false
   },
@@ -261,12 +300,20 @@
     "named": false
   },
   {
+    "type": "contains",
+    "named": false
+  },
+  {
     "type": "false",
     "named": false
   },
   {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "in",
+    "named": false
   },
   {
     "type": "not",
